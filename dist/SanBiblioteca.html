@@ -1,0 +1,48 @@
+<html><head>
+  <SCRIPT src="./web-files/dtjava.js"></SCRIPT>
+<script>
+    function launchApplication(jnlpfile) {
+        dtjava.launch(            {
+                url : 'SanBiblioteca.jnlp',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGpubHAgc3BlYz0iMS4wIiB4bWxuczpqZng9Imh0dHA6Ly9qYXZhZnguY29tIiBocmVmPSJTYW5CaWJsaW90ZWNhLmpubHAiPgogIDxpbmZvcm1hdGlvbj4KICAgIDx0aXRsZT5TYW5CaWJsaW90ZWNhPC90aXRsZT4KICAgIDx2ZW5kb3I+cmF1bHNhbnRpYWdvPC92ZW5kb3I+CiAgICA8ZGVzY3JpcHRpb24+bnVsbDwvZGVzY3JpcHRpb24+CiAgICA8b2ZmbGluZS1hbGxvd2VkLz4KICA8L2luZm9ybWF0aW9uPgogIDxyZXNvdXJjZXM+CiAgICA8ajJzZSB2ZXJzaW9uPSIxLjYrIiBocmVmPSJodHRwOi8vamF2YS5zdW4uY29tL3Byb2R1Y3RzL2F1dG9kbC9qMnNlIi8+CiAgICA8amFyIGhyZWY9IlNhbkJpYmxpb3RlY2EuamFyIiBzaXplPSI3NDMxIiBkb3dubG9hZD0iZWFnZXIiIC8+CiAgPC9yZXNvdXJjZXM+CiAgPGFwcGxpY2F0aW9uLWRlc2MgbWFpbi1jbGFzcz0icGFuZWxlcy5QYW5lbENhcmdhSW5pY2lhbCIgIG5hbWU9IlNhbkJpYmxpb3RlY2EiID4KICA8L2FwcGxpY2F0aW9uLWRlc2M+CiAgPHVwZGF0ZSBjaGVjaz0iYWx3YXlzIi8+Cjwvam5scD4K'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {}
+        );
+        return false;
+    }
+</script>
+
+<script>
+    function javafxEmbedpaneles() {
+        dtjava.embed(
+            {
+                id : 'paneles',
+                toolkit : 'swing',
+                url : 'SanBiblioteca_browser.jnlp',
+                placeholder : 'javafx-app-placeholder',
+                width : '800',
+                height : '600',
+                jnlp_content : 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPGpubHAgc3BlYz0iMS4wIiB4bWxuczpqZng9Imh0dHA6Ly9qYXZhZnguY29tIiBocmVmPSJTYW5CaWJsaW90ZWNhX2Jyb3dzZXIuam5scCI+CiAgPGluZm9ybWF0aW9uPgogICAgPHRpdGxlPlNhbkJpYmxpb3RlY2E8L3RpdGxlPgogICAgPHZlbmRvcj5yYXVsc2FudGlhZ288L3ZlbmRvcj4KICAgIDxkZXNjcmlwdGlvbj5udWxsPC9kZXNjcmlwdGlvbj4KICAgIDxvZmZsaW5lLWFsbG93ZWQvPgogIDwvaW5mb3JtYXRpb24+CiAgPHJlc291cmNlcz4KICAgIDxqMnNlIHZlcnNpb249IjEuNisiIGhyZWY9Imh0dHA6Ly9qYXZhLnN1bi5jb20vcHJvZHVjdHMvYXV0b2RsL2oyc2UiLz4KICAgIDxqYXIgaHJlZj0iU2FuQmlibGlvdGVjYS5qYXIiIHNpemU9Ijc0MzEiIGRvd25sb2FkPSJlYWdlciIgLz4KICA8L3Jlc291cmNlcz4KICA8YXBwbGV0LWRlc2MgIHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBtYWluLWNsYXNzPSJwYW5lbGVzLlBhbmVsQ2FyZ2FJbmljaWFsIiAgbmFtZT0iU2FuQmlibGlvdGVjYSIgPgogIDwvYXBwbGV0LWRlc2M+CiAgPHVwZGF0ZSBjaGVjaz0iYWx3YXlzIi8+Cjwvam5scD4K'
+            },
+            {
+                javafx : '8.0+'
+            },
+            {
+                onGetSplash : function() {}
+            }
+        );
+    }
+    <!-- Embed FX application into web page once page is loaded -->
+    dtjava.addOnloadCallback(javafxEmbedpaneles);
+</script>
+
+</head><body>
+<h2>Test page for <b>SanBiblioteca</b></h2>
+  <b>Webstart:</b> <a href='SanBiblioteca.jnlp' onclick="return launchApplication('SanBiblioteca.jnlp');">click to launch this app as webstart</a><br><hr><br>
+
+  <!-- Applet will be inserted here -->
+  <div id='javafx-app-placeholder'></div>
+</body></html>
