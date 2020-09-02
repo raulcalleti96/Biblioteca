@@ -8,9 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SanBiblioteca.jar" size="7431" download="eager" />
+    <jar href="SanBiblioteca.jar" size="19778" download="eager" />
+    <jar href="lib/AbsoluteLayout.jar" size="2903" download="eager" />
+    <jar href="lib/mysql-connector-java-8.0.20.jar" size="2385601" download="eager" />
   </resources>
-  <application-desc main-class="paneles.PanelCargaInicial"  name="SanBiblioteca" >
+  <application-desc main-class="Principal.Principal"  name="SanBiblioteca" >
   </application-desc>
   <update check="always"/>
 </jnlp>
