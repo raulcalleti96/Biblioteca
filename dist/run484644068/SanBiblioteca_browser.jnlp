@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SanBiblioteca.jar" size="1444872" download="eager" />
+    <jar href="SanBiblioteca.jar" size="24378" download="eager" />
     <jar href="lib/AbsoluteLayout.jar" size="2903" download="eager" />
     <jar href="lib/mysql-connector-java-8.0.20.jar" size="2385601" download="eager" />
   </resources>
