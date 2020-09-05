@@ -105,7 +105,7 @@ public class Libros {
 	public void setSignatura(String signatura) {
 		this.signatura = signatura;
 	}
-	public String getObservaciones() {
+	public  String getObservaciones() {
 		return Observaciones;
 	}
 	public void setObservaciones(String observaciones) {

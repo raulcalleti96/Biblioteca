@@ -6,7 +6,6 @@
 package Principal;
 
 import paneles.PanelCargaInicial;
-import conexiones.Datosalmacenados;
 import javax.swing.UIManager;
 
 
@@ -16,7 +15,6 @@ import javax.swing.UIManager;
  */
 public class Principal {
     
-       static  Datosalmacenados datos = new Datosalmacenados();
     
         public static void main(String args[]) {
             
@@ -27,7 +25,7 @@ public class Principal {
 			e.printStackTrace();
 		}
                 
-                PanelCargaInicial pci = new PanelCargaInicial(datos);
+                PanelCargaInicial pci = new PanelCargaInicial();
                 
               
   
