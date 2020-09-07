@@ -18,7 +18,8 @@ import java.sql.SQLException;
  */
 public class MySQL {
 
-    ArrayList<Libros> listadobiblioteca = new ArrayList<Libros>();
+    ArrayList<Libros> listadobiblioteca = new ArrayList<>();
+    int valorprimario;
 
     public ArrayList<Libros> listadolibros(String valor, String filtro) {
 
@@ -49,7 +50,7 @@ public class MySQL {
                 conn = DriverManager.getConnection(url, usr, pwd);
 
                 //Se define la consulta
-                String sql = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros";
+                String sql = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros";
 
                 //Se prepara la sentencia a ejecutar
                 pstm = conn.prepareStatement(sql);
@@ -64,6 +65,7 @@ public class MySQL {
                     Libros nuevo = new Libros();
 
                     //Asigna el numbre, origen y destino de las columnas de la tabla al avión
+                    nuevo.setIdlibros(rs.getInt("idlibros"));
                     nuevo.setTitulo(rs.getString("titulo"));
                     nuevo.setAutor(rs.getString("autor"));
                     nuevo.setRevista(rs.getString("revista"));
@@ -77,6 +79,7 @@ public class MySQL {
                     nuevo.setEstante(rs.getString("estante"));
                     nuevo.setUbicacion(rs.getString("ubicacion"));
                     nuevo.setSignatura(rs.getString("signatura"));
+                    valorprimario = rs.getInt("idlibros");
                     if (rs.getBoolean("observaciones") == true) {
                         nuevo.setObservaciones("No existe");
                     } else {
@@ -125,7 +128,7 @@ public class MySQL {
 
             String SSQL = "";
             //Declaración del vector de la clase Avión 
-            ArrayList<Libros> listadobiblioteca = new ArrayList<Libros>();
+            ArrayList<Libros> listadobiblioteca = new ArrayList<>();
 
             // Parametros
             String driver = "com.mysql.cj.jdbc.Driver";
@@ -140,66 +143,65 @@ public class MySQL {
             PreparedStatement pstm = null;
             ResultSet rs = null;
 
-            
             if (filtro.equalsIgnoreCase("titulo")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE titulo LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE titulo LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("autor")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE autor LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE autor LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("revista")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE revista LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE revista LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("editorial")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE editorial LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE editorial LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("categoria")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE categoria LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE categoria LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("nRevista")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE nRevista LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE nRevista LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("ano")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ano LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ano LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("ISBN")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ISBN LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ISBN LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("lugar")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE lugar LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE lugar LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("deposito_legal")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE deposito_legal LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE deposito_legal LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("estante")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE estante LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE estante LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("ubicacion")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ubicacion LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ubicacion LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("signatura")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE signatura LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE signatura LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("observaciones")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE observaciones LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE observaciones LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("informe")) {
 
-                SSQL = "SELECT titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE informe LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE informe LIKE '%" + valor + "%'";
 
             }
 
@@ -213,6 +215,7 @@ public class MySQL {
                 while (rs.next()) {
                     Libros nuevo = new Libros();
 
+                    nuevo.setIdlibros(rs.getInt("idlibros"));
                     nuevo.setTitulo(rs.getString("titulo"));
                     nuevo.setAutor(rs.getString("autor"));
                     nuevo.setRevista(rs.getString("revista"));
@@ -271,6 +274,111 @@ public class MySQL {
 
         }
         return null;
+
+    }
+
+    public void cambioDatos(Libros libro) {
+
+        // Parametros
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String database = "biblioteca";
+        String hostname = "localhost";
+        String port = "3306";
+        String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false&serverTimeZone=CEST";
+        String usr = "root";
+        String pwd = "12345678";
+        //Referencias de las clases de las bases de datos
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            //Se levanta el driver
+            Class.forName(driver);
+
+            //Se establece conexión con la base de datos
+            conn = DriverManager.getConnection(url, usr, pwd);
+
+            String sql = "UPDATE libros SET titulo='" + libro.getTitulo() + "', autor='" + libro.getAutor() + "', revista='" + libro.getRevista() + "', editorial='" + libro.getEditorial() + "', categoria= '" + libro.getCategoria() + "" + "', nRevista='" + String.valueOf(libro.getNrevista()) + "', ano='" + String.valueOf(libro.getAño()) + "', ISBN='" + libro.getISBN() + "', deposito_legal='" + libro.getDeposito_legal() + "', estante='" + libro.getEstante() + "', ubicacion='" + libro.getUbicacion() + "', signatura='" + libro.getSignatura() + "' WHERE (idlibros= '" + libro.getIdlibros() + "');";
+
+            pstm = conn.prepareStatement(sql);
+
+            int rows = pstm.executeUpdate(sql);
+
+        } catch (ClassNotFoundException | SQLException e) {
+
+            System.out.println(e);
+
+        } finally {
+
+            try {
+
+                //Se cierran los recursos en åorden inverso a su creación
+                if (pstm != null) {
+
+                    pstm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
+
+    }
+
+    public void nuevoLibro(Libros libro) {
+        // Parametros
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String database = "biblioteca";
+        String hostname = "localhost";
+        String port = "3306";
+        String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useSSL=false&serverTimeZone=CEST";
+        String usr = "root";
+        String pwd = "12345678";
+        //Referencias de las clases de las bases de datos
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            //Se levanta el driver
+            Class.forName(driver);
+            //Se establece conexión con la base de datos
+            conn = DriverManager.getConnection(url, usr, pwd);
+
+            String sql;
+            sql = "INSERT INTO libros (idlibros, titulo, autor, revista, editorial, categoria,nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura)"+ " VALUES ('"+ (valorprimario+1)+ "', '" + libro.getTitulo() + "', '" + libro.getAutor() +"', '"+libro.getRevista() +"', '" + libro.getEditorial() + "', '" + libro.getCategoria() + "', '"+ String.valueOf(libro.getNrevista()) +"', '" + String.valueOf(libro.getAño()) + "', '" + libro.getISBN() + "', '" + libro.getLugar() + "', '" + libro.getDeposito_legal() + "', '" + libro.getEstante() + "', '" + libro.getUbicacion() +"', '"+ libro.getSignatura() + "');";
+      
+            pstm = conn.prepareStatement(sql);
+
+            int rows = pstm.executeUpdate(sql);
+
+        } catch (ClassNotFoundException | SQLException e) {
+
+            System.out.println(e);
+
+        } finally {
+
+            try {
+
+                //Se cierran los recursos en åorden inverso a su creación
+                if (pstm != null) {
+
+                    pstm.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
 
     }
 

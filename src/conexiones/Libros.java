@@ -11,6 +11,7 @@ package conexiones;
  */
 public class Libros {
     
+   private int idlibros;
    private  String titulo;
    private String autor;
    private String revista;
@@ -27,6 +28,15 @@ public class Libros {
    private String Observaciones;
    private String Informe;
    
+        public int getIdlibros(){
+            
+            return idlibros;
+        }
+        
+        public void setIdlibros(int idlibros){
+            
+            this.idlibros = idlibros;
+        }
    	public String getTitulo() {
 		return titulo;
 	}

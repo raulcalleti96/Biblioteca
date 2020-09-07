@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SanBiblioteca_browser.jnlp">
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="SanBiblioteca.jnlp">
   <information>
     <title>SanBiblioteca</title>
     <vendor>raulsantiago</vendor>
@@ -8,11 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SanBiblioteca.jar" size="129036" download="eager" />
+    <jar href="SanBiblioteca.jar" size="116919" download="eager" />
     <jar href="lib/AbsoluteLayout.jar" size="2903" download="eager" />
     <jar href="lib/mysql-connector-java-8.0.20.jar" size="2385601" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="Principal.Principal"  name="SanBiblioteca" >
-  </applet-desc>
+  <application-desc main-class="Principal.Principal"  name="SanBiblioteca" >
+  </application-desc>
   <update check="always"/>
 </jnlp>
