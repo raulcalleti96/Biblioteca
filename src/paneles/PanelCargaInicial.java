@@ -8,7 +8,14 @@ package paneles;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import conexiones.*;
+import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
@@ -121,6 +128,23 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
+        CompraJD = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        fieldTituloCompra = new javax.swing.JTextField();
+        fieldAutorCompra = new javax.swing.JTextField();
+        fieldISBNCompra = new javax.swing.JTextField();
+        buscarLibro = new javax.swing.JButton();
+        NotasJD = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        areaTexto = new javax.swing.JTextArea();
+        Guardar = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         panelIzq = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         panelTitulo = new javax.swing.JPanel();
@@ -129,7 +153,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         PanelMenu = new javax.swing.JPanel();
         nuevoLibro = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        notasLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         PanelLogin = new javax.swing.JPanel();
@@ -746,7 +770,6 @@ public class PanelCargaInicial extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        contacto.setPreferredSize(new java.awt.Dimension(246, 295));
         contacto.setSize(new java.awt.Dimension(246, 295));
 
         jPanel6.setBackground(new java.awt.Color(45, 64, 89));
@@ -805,6 +828,165 @@ public class PanelCargaInicial extends javax.swing.JFrame {
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        CompraJD.setSize(new java.awt.Dimension(330, 220));
+
+        jPanel7.setBackground(new java.awt.Color(45, 64, 89));
+
+        jLabel35.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(229, 229, 229));
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paneles/icons8-buying-25.png"))); // NOI18N
+        jLabel35.setText("Busqueda de compra");
+
+        jLabel36.setForeground(new java.awt.Color(229, 229, 229));
+
+        jLabel37.setForeground(new java.awt.Color(229, 229, 229));
+        jLabel37.setText("Título:");
+
+        jLabel38.setForeground(new java.awt.Color(229, 229, 229));
+        jLabel38.setText("Autor:");
+
+        jLabel39.setForeground(new java.awt.Color(229, 229, 229));
+        jLabel39.setText("ISBN:");
+
+        fieldISBNCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldISBNCompraActionPerformed(evt);
+            }
+        });
+
+        buscarLibro.setText("Buscar");
+        buscarLibro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                buscarLibroMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel36)
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jLabel37)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldTituloCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel39)
+                                    .addComponent(jLabel38))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldAutorCompra)
+                                    .addComponent(fieldISBNCompra)))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jLabel35))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(buscarLibro)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel35)
+                .addGap(13, 13, 13)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(fieldTituloCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel38)
+                    .addComponent(fieldAutorCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel39)
+                    .addComponent(fieldISBNCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel36)
+                .addGap(18, 18, 18)
+                .addComponent(buscarLibro)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout CompraJDLayout = new javax.swing.GroupLayout(CompraJD.getContentPane());
+        CompraJD.getContentPane().setLayout(CompraJDLayout);
+        CompraJDLayout.setHorizontalGroup(
+            CompraJDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        CompraJDLayout.setVerticalGroup(
+            CompraJDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        NotasJD.setMinimumSize(new java.awt.Dimension(495, 358));
+        NotasJD.setSize(new java.awt.Dimension(495, 358));
+
+        jPanel8.setSize(new java.awt.Dimension(495, 358));
+
+        areaTexto.setBackground(new java.awt.Color(28, 28, 28));
+        areaTexto.setColumns(20);
+        areaTexto.setForeground(new java.awt.Color(171, 171, 171));
+        areaTexto.setLineWrap(true);
+        areaTexto.setRows(5);
+        jScrollPane2.setViewportView(areaTexto);
+
+        Guardar.setText("Guardar");
+        Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                GuardarMousePressed(evt);
+            }
+        });
+
+        Salir.setText("Salir");
+        Salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                SalirMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(Guardar)
+                .addGap(62, 62, 62)
+                .addComponent(Salir)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Guardar)
+                    .addComponent(Salir))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout NotasJDLayout = new javax.swing.GroupLayout(NotasJD.getContentPane());
+        NotasJD.getContentPane().setLayout(NotasJDLayout);
+        NotasJDLayout.setHorizontalGroup(
+            NotasJDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        NotasJDLayout.setVerticalGroup(
+            NotasJDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SanBiblioteca");
         setBackground(new java.awt.Color(153, 0, 0));
@@ -855,18 +1037,21 @@ public class PanelCargaInicial extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(45, 64, 89));
 
-        jLabel7.setBackground(new java.awt.Color(45, 64, 89));
-        jLabel7.setFont(new java.awt.Font("Kohinoor Telugu", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(229, 229, 229));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paneles/icons8-note-25.png"))); // NOI18N
-        jLabel7.setText("Notas");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        notasLabel.setBackground(new java.awt.Color(45, 64, 89));
+        notasLabel.setFont(new java.awt.Font("Kohinoor Telugu", 1, 18)); // NOI18N
+        notasLabel.setForeground(new java.awt.Color(229, 229, 229));
+        notasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        notasLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paneles/icons8-note-25.png"))); // NOI18N
+        notasLabel.setText("Notas");
+        notasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                notasLabelMousePressed(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel7MouseExited(evt);
+                notasLabelMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel7MouseEntered(evt);
+                notasLabelMouseEntered(evt);
             }
         });
 
@@ -874,13 +1059,13 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(notasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(notasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
 
@@ -892,6 +1077,9 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/paneles/icons8-buying-25.png"))); // NOI18N
         jLabel8.setText("Compra de libro");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel8MousePressed(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel8MouseExited(evt);
             }
@@ -1003,8 +1191,18 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         jLabel11.setText("Observaciones:");
 
         jButton3.setText("Abrir");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
 
         jButton4.setText("Abrir");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton4MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -1350,7 +1548,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Título", "Autor", "Revista", "Editorial", "Categoria", "Nº Revista", "Año", "ISBN", "Lugar", "Deposito leg.", "Estante", "Ubicación", "Signatura", "Observaciones", "Informe"
+                "Título", "Autor", "Revista", "Editorial", "Categoria", "Nº Revista", "Año", "ISBN", "Lugar", "Deposito leg.", "Estante", "Ubicación", "Signatura"
             }
         ));
         TablaPrincipal.setEnabled(false);
@@ -1426,19 +1624,20 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         jLabel8.setOpaque(true);
     }//GEN-LAST:event_jLabel8MouseExited
 
-    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+    private void notasLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notasLabelMouseEntered
         // TODO add your handling code here:
         Color colorGanado = new Color(78, 137, 174);
-        jLabel7.setBackground(colorGanado);
-        jLabel7.setOpaque(true);
-    }//GEN-LAST:event_jLabel7MouseEntered
+        notasLabel.setBackground(colorGanado);
+        notasLabel.setOpaque(true);
 
-    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+    }//GEN-LAST:event_notasLabelMouseEntered
+
+    private void notasLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notasLabelMouseExited
         // TODO add your handling code here:
         Color colorGanado = new Color(45, 64, 89);
-        jLabel7.setBackground(colorGanado);
-        jLabel7.setOpaque(true);
-    }//GEN-LAST:event_jLabel7MouseExited
+        notasLabel.setBackground(colorGanado);
+        notasLabel.setOpaque(true);
+    }//GEN-LAST:event_notasLabelMouseExited
 
     private void nuevoLibroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoLibroMouseEntered
         // TODO add your handling code here:
@@ -1496,23 +1695,21 @@ public class PanelCargaInicial extends javax.swing.JFrame {
             int fila = TablaPrincipal.rowAtPoint(evt.getPoint());
 
             if (fila >= 0) {
-                
+
                 libro.setTitulo((String) TablaPrincipal.getValueAt(fila, 0));
                 libro.setAutor((String) TablaPrincipal.getValueAt(fila, 1));
                 libro.setRevista((String) TablaPrincipal.getValueAt(fila, 2));
                 libro.setEditorial((String) TablaPrincipal.getValueAt(fila, 3));
                 libro.setCategoria((String) TablaPrincipal.getValueAt(fila, 4));
                 libro.setNrevista(Integer.parseInt((String) TablaPrincipal.getValueAt(fila, 5)));
-                libro.setAño(Integer.parseInt((String)TablaPrincipal.getValueAt(fila, 6)));
+                libro.setAño(Integer.parseInt((String) TablaPrincipal.getValueAt(fila, 6)));
                 libro.setISBN((String) TablaPrincipal.getValueAt(fila, 7));
                 libro.setLugar((String) TablaPrincipal.getValueAt(fila, 8));
                 libro.setDeposito_legal((String) TablaPrincipal.getValueAt(fila, 9));
                 libro.setEstante((String) TablaPrincipal.getValueAt(fila, 10));
                 libro.setUbicacion((String) TablaPrincipal.getValueAt(fila, 11));
                 libro.setSignatura((String) TablaPrincipal.getValueAt(fila, 12));
-               
-                
-                
+
                 fieldTitulo.setText(libro.getTitulo());
                 fieldAutor.setText(libro.getAutor());
                 fieldRevista.setText(libro.getRevista());
@@ -1527,7 +1724,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
                 fieldEstante.setText(libro.getEstante());
                 fieldUbicacion.setText(libro.getUbicacion());
                 fieldSignatura.setText(libro.getSignatura());
-                
+
                 muestraTitulo.setText(libro.getTitulo());
                 muestraAutor.setText(libro.getAutor());
                 muestraRevista.setText(libro.getRevista());
@@ -1580,14 +1777,14 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private void botonEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonEditarMousePressed
         // TODO add your handling code here:
 
-           dialogoEdicion.setVisible(true);
+        dialogoEdicion.setVisible(true);
 
 
     }//GEN-LAST:event_botonEditarMousePressed
 
     private void ButonCambioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButonCambioMousePressed
         // TODO add your handling code here:
-       
+
         libro.setTitulo(fieldTitulo.getText());
         libro.setAutor(fieldAutor.getText());
         libro.setEditorial(fieldEditorial.getText());
@@ -1601,28 +1798,25 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         libro.setNrevista(Integer.parseInt(fieldNRevista.getText()));
         libro.setEstante(fieldEstante.getText());
         libro.setSignatura(fieldSignatura.getText());
-        
-       
+
         datos.cambioDatos(libro);
         ponerenTabla();
- 
+
     }//GEN-LAST:event_ButonCambioMousePressed
 
     private void nuevoLibroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoLibroMousePressed
         // TODO add your handling code here:+
-        
+
         botonSalir.setVisible(false);
         correcto.setVisible(false);
         nuevoLibroJD.setVisible(true);
-        
-        
-        
+
+
     }//GEN-LAST:event_nuevoLibroMousePressed
 
     private void ButonNuevoLibroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ButonNuevoLibroMousePressed
         // TODO add your handling code here:
-        
-        
+
         libro.setTitulo(fieldTitulonuevo.getText());
         libro.setAutor(fieldAutornuevo.getText());
         libro.setEditorial(fieldEditorialnuevo.getText());
@@ -1636,7 +1830,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         libro.setNrevista(Integer.parseInt(fieldNRevistanuevo.getText()));
         libro.setEstante(fieldEstantenuevo.getText());
         libro.setSignatura(fieldSignaturanuevo.getText());
-        
+
         datos.nuevoLibro(libro);
         botonSalir.setVisible(true);
         correcto.setVisible(true);
@@ -1645,38 +1839,111 @@ public class PanelCargaInicial extends javax.swing.JFrame {
 
     private void jLabel30MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel30MousePressed
         // TODO add your handling code here:
-        
-        contacto.setVisible(true); 
+
+        contacto.setVisible(true);
     }//GEN-LAST:event_jLabel30MousePressed
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
         // TODO add your handling code here:
-        
+
         claveErronea.setVisible(false);
         ajustes.setVisible(true);
     }//GEN-LAST:event_jLabel1MousePressed
 
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         // TODO add your handling code here:
-        
-       char[] password = claveActual.getPassword();
-            String valorClave = "";
-            for (int i = 0; i < password.length; i++) {
 
-                valorClave = valorClave + password[i];
-            }
-            
-            char[] pswd = claveNueva.getPassword();
-            String valorClave2 = "";
-            for (int i = 0; i < pswd.length; i++) {
+        char[] password = claveActual.getPassword();
+        String valorClave = "";
+        for (int i = 0; i < password.length; i++) {
 
-                valorClave2 = valorClave2 + pswd[i];
-            }
-         if(!valorClave.equals(NUMEROCLAVE))
-             claveErronea.setVisible(true);
-         else
-             NUMEROCLAVE = valorClave2;
+            valorClave = valorClave + password[i];
+        }
+
+        char[] pswd = claveNueva.getPassword();
+        String valorClave2 = "";
+        for (int i = 0; i < pswd.length; i++) {
+
+            valorClave2 = valorClave2 + pswd[i];
+        }
+        if (!valorClave.equals(NUMEROCLAVE)) {
+            claveErronea.setVisible(true);
+        } else {
+            NUMEROCLAVE = valorClave2;
+        }
     }//GEN-LAST:event_jButton1MousePressed
+
+    private void fieldISBNCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldISBNCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldISBNCompraActionPerformed
+
+    private void buscarLibroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buscarLibroMousePressed
+        // TODO add your handling code here:
+
+        libro.setTitulo(fieldTituloCompra.getText());
+        libro.setAutor(fieldAutorCompra.getText());
+        libro.setISBN(fieldISBNCompra.getText());
+        new compraLib().ejecuta(libro);
+    }//GEN-LAST:event_buscarLibroMousePressed
+
+    private void jLabel8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MousePressed
+        // TODO add your handling code here:
+
+        CompraJD.setVisible(true);
+    }//GEN-LAST:event_jLabel8MousePressed
+
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+        // TODO add your handling code here:
+
+        try {
+            File path = new File("../SanBiblioteca/Documentos/" + "I-" + muestraISBN.getText() + ".docx");
+            Desktop.getDesktop().open(path);
+        } catch (IOException | java.lang.IllegalArgumentException e) {
+
+            JOptionPane.showMessageDialog(null, "Fichero no encontrado ", "No encontrado", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton3MousePressed
+
+    private void notasLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_notasLabelMousePressed
+        // TODO add your handling code here:
+
+        if (vista == 0) {
+
+            recibeNotas();
+            NotasJD.setVisible(true);
+        } else {
+
+            NotasJD.setVisible(true);
+
+        }
+
+    }//GEN-LAST:event_notasLabelMousePressed
+
+    private void GuardarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GuardarMousePressed
+        // TODO add your handling code here:
+
+        guardarFichero();
+    }//GEN-LAST:event_GuardarMousePressed
+
+    private void SalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMousePressed
+        // TODO add your handling code here:
+
+        vista = 1;
+        NotasJD.setVisible(false);
+    }//GEN-LAST:event_SalirMousePressed
+
+    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+        // TODO add your handling code here:
+        try {
+            File path = new File("../SanBiblioteca/Documentos/" + "O-" + muestraISBN.getText() + ".docx");
+            Desktop.getDesktop().open(path);
+        } catch (IOException e) {
+
+            JOptionPane.showMessageDialog(null, "Fichero no encontrado ", "No encontrado", JOptionPane.ERROR_MESSAGE);
+        } catch (java.lang.IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Fichero no encontrado ", "No encontrado", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton4MousePressed
 
     /**
      * @param args the command line arguments
@@ -1685,15 +1952,21 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButonCambio;
     private javax.swing.JButton ButonNuevoLibro;
+    private javax.swing.JDialog CompraJD;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JDialog NotasJD;
     private javax.swing.JPanel PanelLogin;
     private javax.swing.JPanel PanelMenu;
+    private javax.swing.JButton Salir;
     private javax.swing.JLabel Signatura;
     private javax.swing.JTable TablaPrincipal;
     private javax.swing.JDialog ajustes;
+    private javax.swing.JTextArea areaTexto;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonResetFiltro;
     private javax.swing.JButton botonSalir;
     private javax.swing.JButton botonValidar;
+    private javax.swing.JButton buscarLibro;
     private javax.swing.JPasswordField clave;
     private javax.swing.JPasswordField claveActual;
     private javax.swing.JLabel claveErronea;
@@ -1702,6 +1975,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel correcto;
     private javax.swing.JDialog dialogoEdicion;
     private javax.swing.JTextField fieldAutor;
+    private javax.swing.JTextField fieldAutorCompra;
     private javax.swing.JTextField fieldAutornuevo;
     private javax.swing.JTextField fieldAño;
     private javax.swing.JTextField fieldAñonuevo;
@@ -1715,6 +1989,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField fieldEstante;
     private javax.swing.JTextField fieldEstantenuevo;
     private javax.swing.JTextField fieldISBN;
+    private javax.swing.JTextField fieldISBNCompra;
     private javax.swing.JTextField fieldISBNnuevo;
     private javax.swing.JTextField fieldLugar;
     private javax.swing.JTextField fieldLugarnuevo;
@@ -1725,6 +2000,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField fieldSignatura;
     private javax.swing.JTextField fieldSignaturanuevo;
     private javax.swing.JTextField fieldTitulo;
+    private javax.swing.JTextField fieldTituloCompra;
     private javax.swing.JTextField fieldTitulonuevo;
     private javax.swing.JTextField fieldUbicacion;
     private javax.swing.JTextField fieldUbicacionnuevo;
@@ -1760,10 +2036,14 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -1774,7 +2054,10 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel labelAno;
     private javax.swing.JLabel labelAutor;
@@ -1813,6 +2096,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel muestraSignatura;
     private javax.swing.JLabel muestraTitulo;
     private javax.swing.JLabel muestraUbicacion;
+    private javax.swing.JLabel notasLabel;
     private javax.swing.JLabel nuevoLibro;
     private javax.swing.JDialog nuevoLibroJD;
     private javax.swing.JComboBox<String> opcionCombo;
@@ -1831,6 +2115,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
     private static String NUMEROCLAVE = "Santi667";
     int x;
     int y;
+    int vista = 0;
 
     //Método de comprobación de clave
     public void comprobacionClave(String valor) {
@@ -1846,7 +2131,6 @@ public class PanelCargaInicial extends javax.swing.JFrame {
 
         } else {
 
-            System.out.print(valor);
             JOptionPane.showMessageDialog(null, "Clave incorrecta", "Clave Erronea", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -1865,9 +2149,8 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         for (int i = 0; i < provisional.size(); i++) {
 
             //Se crea un Array para almacenar la matrícula, origen y destino del <avión>
-            String[] lista = new String[15];
+            String[] lista = new String[13];
 
-           
             //Rellena el array con la información obtenida
             lista[0] = provisional.get(i).getTitulo();
             lista[1] = provisional.get(i).getAutor();
@@ -1882,8 +2165,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
             lista[10] = provisional.get(i).getEstante();
             lista[11] = provisional.get(i).getUbicacion();
             lista[12] = provisional.get(i).getSignatura();
-            lista[13] = provisional.get(i).getObservaciones();
-            lista[14] = provisional.get(i).getInforme();
+
 
             //Añade el array a la fila de la tabla
             modelo.addRow(lista);
@@ -1905,7 +2187,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         for (int i = 0; i < provisional.size(); i++) {
 
             //Se crea un Array para almacenar la matrícula, origen y destino del <avión>
-            String[] lista = new String[15];
+            String[] lista = new String[13];
 
             System.out.print(provisional.get(i).getIdlibros());
             //Rellena el array con la información obtenida
@@ -1922,8 +2204,7 @@ public class PanelCargaInicial extends javax.swing.JFrame {
             lista[10] = provisional.get(i).getEstante();
             lista[11] = provisional.get(i).getUbicacion();
             lista[12] = provisional.get(i).getSignatura();
-            lista[13] = provisional.get(i).getObservaciones();
-            lista[14] = provisional.get(i).getInforme();
+
 
             //Añade el array a la fila de la tabla
             modelo.addRow(lista);
@@ -1944,6 +2225,65 @@ public class PanelCargaInicial extends javax.swing.JFrame {
         }
     }
 
- 
+    public void recibeNotas() {
 
+        File archivo = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+
+        try {
+            // Apertura del fichero y creacion de BufferedReader para poder
+            // hacer una lectura comoda (disponer del metodo readLine()).
+            archivo = new File("../SanBiblioteca/Documentos/Notas");
+            fr = new FileReader(archivo);
+            br = new BufferedReader(fr);
+
+            // Lectura del fichero
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                areaTexto.append(linea + "\n");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // En el finally cerramos el fichero, para asegurarnos
+            // que se cierra tanto si todo va bien como si salta 
+            // una excepcion.
+
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+    }
+
+    public void guardarFichero() {
+
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try {
+            fichero = new FileWriter("../SanBiblioteca/Documentos/Notas");
+            pw = new PrintWriter(fichero);
+
+            pw.println(areaTexto.getText());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Nuevamente aprovechamos el finally para 
+                // asegurarnos que se cierra el fichero.
+                if (null != fichero) {
+                    fichero.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+
+    }
 }

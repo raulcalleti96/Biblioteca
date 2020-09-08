@@ -50,7 +50,7 @@ public class MySQL {
                 conn = DriverManager.getConnection(url, usr, pwd);
 
                 //Se define la consulta
-                String sql = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros";
+                String sql = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros";
 
                 //Se prepara la sentencia a ejecutar
                 pstm = conn.prepareStatement(sql);
@@ -80,16 +80,7 @@ public class MySQL {
                     nuevo.setUbicacion(rs.getString("ubicacion"));
                     nuevo.setSignatura(rs.getString("signatura"));
                     valorprimario = rs.getInt("idlibros");
-                    if (rs.getBoolean("observaciones") == true) {
-                        nuevo.setObservaciones("No existe");
-                    } else {
-                        nuevo.setObservaciones("No hay observaciones");
-                    }
-                    if (rs.getBoolean("informe") == true) {
-                        nuevo.setInforme("No existe");
-                    } else {
-                        nuevo.setInforme("No hay observaciones");
-                    }
+                    
 
                     listadobiblioteca.add(nuevo);
 
@@ -145,65 +136,57 @@ public class MySQL {
 
             if (filtro.equalsIgnoreCase("titulo")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE titulo LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE titulo LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("autor")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE autor LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE autor LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("revista")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE revista LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE revista LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("editorial")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE editorial LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE editorial LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("categoria")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE categoria LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE categoria LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("nRevista")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE nRevista LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE nRevista LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("ano")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ano LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE ano LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("ISBN")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ISBN LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE ISBN LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("lugar")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE lugar LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE lugar LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("deposito_legal")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE deposito_legal LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE deposito_legal LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("estante")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE estante LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE estante LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("ubicacion")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE ubicacion LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE ubicacion LIKE '%" + valor + "%'";
 
             } else if (filtro.equalsIgnoreCase("signatura")) {
 
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE signatura LIKE '%" + valor + "%'";
+                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE signatura LIKE '%" + valor + "%'";
 
-            } else if (filtro.equalsIgnoreCase("observaciones")) {
-
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE observaciones LIKE '%" + valor + "%'";
-
-            } else if (filtro.equalsIgnoreCase("informe")) {
-
-                SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura, observaciones, informe FROM libros WHERE informe LIKE '%" + valor + "%'";
-
-            }
+            } 
 
             try {
 
@@ -227,18 +210,8 @@ public class MySQL {
                     nuevo.setLugar(rs.getString("lugar"));
                     nuevo.setDeposito_legal(rs.getString("deposito_legal"));
                     nuevo.setEstante(rs.getString("estante"));
-                    nuevo.setUbicacion(rs.getString("ubicacion"));
-                    nuevo.setSignatura(rs.getString("signatura"));
-                    if (rs.getBoolean("observaciones") == true) {
-                        nuevo.setObservaciones("No existe");
-                    } else {
-                        nuevo.setObservaciones("No hay observaciones");
-                    }
-                    if (rs.getBoolean("informe") == true) {
-                        nuevo.setInforme("No existe");
-                    } else {
-                        nuevo.setInforme("No hay observaciones");
-                    }
+
+
 
                     listadobiblioteca.add(nuevo);
 

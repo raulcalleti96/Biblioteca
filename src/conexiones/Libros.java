@@ -25,8 +25,7 @@ public class Libros {
    private String estante;
    private String ubicacion;
    private String signatura;
-   private String Observaciones;
-   private String Informe;
+
    
         public int getIdlibros(){
             
@@ -115,18 +114,7 @@ public class Libros {
 	public void setSignatura(String signatura) {
 		this.signatura = signatura;
 	}
-	public  String getObservaciones() {
-		return Observaciones;
-	}
-	public void setObservaciones(String observaciones) {
-		Observaciones = observaciones;
-	}
-	public String getInforme() {
-		return Informe;
-	}
-	public void setInforme(String informe) {
-		Informe = informe;
-	}
+
     
     
 }

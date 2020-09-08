@@ -5,6 +5,7 @@
  */
 package Principal;
 
+
 import paneles.PanelCargaInicial;
 import javax.swing.UIManager;
 
@@ -33,5 +34,6 @@ public class Principal {
                 pci.setVisible(true);
      
          }
-    
+            
+
 }
