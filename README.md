@@ -30,7 +30,7 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 
 ## Autor ✒️
 
-* **Raul Santiago Prieto** - *Trabajo Princial* - [RaulSantiago](https://github.com/raulcalleti96)
+* **Raul Santiago Prieto** - *Desarrollador* - [RaulSantiago](https://github.com/raulcalleti96)
 
 ## Licencia 📄
 
