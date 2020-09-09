@@ -1,39 +1,41 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Principal;
-
 
 import paneles.PanelCargaInicial;
 import javax.swing.UIManager;
-
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
+ * Clase Principal
  *
- * @author raulsantiago
+ * Contiene el main principal donde se ejecutara la clase que muestra el Panel
+ * principal
+ *
+ * @author Raul Santiago Prieto
+ * @version 1.0
  */
 public class Principal {
-    
-    
-        public static void main(String args[]) {
-            
-            	try {
-			//Forma de los componentes modificial, instanciados con MotifLookandFeel. Contiene las barras y formas de los componentes
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-                
-                PanelCargaInicial pci = new PanelCargaInicial();
-                
-              
-  
-            
-                pci.setVisible(true);
-     
-         }
-            
+
+    /**
+     * Método principal de la clase
+     *
+     * @param args
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.lang.IllegalAccessException
+     * @throws java.lang.InstantiationException
+     * @throws javax.swing.UnsupportedLookAndFeelException
+     */
+    public static void main(String args[]) throws ClassNotFoundException, IllegalAccessException, InstantiationException, UnsupportedLookAndFeelException {
+
+        //Forma de los componentes modificial, instanciados con MotifLookandFeel. Contiene las barras y formas de los componentes
+        UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+
+       
+        /**
+         * Instanciación de la clase que mostrará el panel principal
+         */
+        PanelCargaInicial pci = new PanelCargaInicial();
+        pci.setVisible(true);
+
+    }
 
 }

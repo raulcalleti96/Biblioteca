@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package conexiones;
 
 import java.util.ArrayList;
@@ -13,21 +8,52 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * Clase MySQL
+ *
+ * Contiene los métodos encargados de recibir los datos de la base de datos
+ * local con los datos de los libros
  *
  * @author raulsantiago
+ * @version 1.0
  */
 public class MySQL {
 
+    /**
+     * ArrayList donde se almacenarán los datos recibidos de la base de datos de
+     * tipo Libros
+     */
     ArrayList<Libros> listadobiblioteca = new ArrayList<>();
-    int valorprimario;
 
-    public ArrayList<Libros> listadolibros(String valor, String filtro) {
+    /**
+     * Variable que almacenará las idlibros con el objetivo de que almacene la
+     * id del último libro almacenado para poder añadir uno nuevo detrás
+     */
+    int ultimaID;
 
+    /**
+     * Devuelve un Array con todos los libros de la base de datos
+     *
+     * @param valor <ul>
+     * <li>Si pasa un valor con el cual el método mostrará en la JTable los
+     * registros con ese valor</li>
+     * <li>Si pasa como valor <i>null</i> el método devolverá todos los
+     * registros</li>
+     * </ul>
+     * @param filtro<ul>
+     * <li>Si pasa un filtro ayudará a buscar los registros con el valor y
+     * filtro para mostrarlos</li>
+     * <li>Si pasa como valor <i>null</i> el método devolverá todos los
+     * registros</li>
+     * </ul>
+     * @return listadoLibros Devuelve los registros solicitados
+     */
+    public ArrayList<Libros> listadoLibros(String valor, String filtro) {
+
+        //Si no se recibe ni un valor y ningún valor de filtro mostrará todos los registros
         if (valor == null && filtro == null) {
 
+            //Elimina los registros actuales del array 
             listadobiblioteca.removeAll(listadobiblioteca);
-            Boolean conectado = false;
-            //Declaración del vector de la clase Avión 
 
             // Parametros
             String driver = "com.mysql.cj.jdbc.Driver";
@@ -79,13 +105,13 @@ public class MySQL {
                     nuevo.setEstante(rs.getString("estante"));
                     nuevo.setUbicacion(rs.getString("ubicacion"));
                     nuevo.setSignatura(rs.getString("signatura"));
-                    valorprimario = rs.getInt("idlibros");
-                    
+                    ultimaID = rs.getInt("idlibros");
 
+                    //Añade el libro leido al array
                     listadobiblioteca.add(nuevo);
 
                 }
-
+                //Recoge las posibles excepciones que se pueden ocasionar
             } catch (ClassNotFoundException | SQLException e) {
 
                 System.out.println(e);
@@ -94,7 +120,7 @@ public class MySQL {
 
                 try {
 
-                    //Se cierran los recursos en åorden inverso a su creación
+                    //Se cierran los recursos en orden inverso a su creación
                     if (rs != null) {
                         rs.close();
                     }
@@ -105,21 +131,21 @@ public class MySQL {
                         conn.close();
                     }
 
-                    //devuelve el vector de aviones
-                    //new Datosalmacenados(listadobiblioteca);
+                    //Devuelve el array con todos los registros
                     return listadobiblioteca;
 
+                    //Recoge la posible excepción que pueda proporcionar la SQL 
                 } catch (SQLException e) {
                     System.out.println(e);
                 }
 
             }
 
+            //En caso de que se pase como parametro un valor y filtro se mostrará los registros con ese valor
         } else {
 
+            //Declaración de la variable que almacenará la sentencia 
             String SSQL = "";
-            //Declaración del vector de la clase Avión 
-            ArrayList<Libros> listadobiblioteca = new ArrayList<>();
 
             // Parametros
             String driver = "com.mysql.cj.jdbc.Driver";
@@ -134,6 +160,7 @@ public class MySQL {
             PreparedStatement pstm = null;
             ResultSet rs = null;
 
+            //Condiciones dependiendo del filtro que busca y su sentencia SQL
             if (filtro.equalsIgnoreCase("titulo")) {
 
                 SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE titulo LIKE '%" + valor + "%'";
@@ -186,15 +213,20 @@ public class MySQL {
 
                 SSQL = "SELECT idlibros, titulo, autor, revista, editorial, categoria, nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura FROM libros WHERE signatura LIKE '%" + valor + "%'";
 
-            } 
+            }
 
             try {
 
+                //Se levanta el driver
                 Class.forName(driver);
+                //Se establece conexión con la base de datos
                 conn = DriverManager.getConnection(url, usr, pwd);
+                //Se define la consulta
                 pstm = conn.prepareStatement(SSQL);
+                //Se ejecuta la sentencia y recogen los resultados
                 rs = pstm.executeQuery();
 
+                //Se itere por lo resultados
                 while (rs.next()) {
                     Libros nuevo = new Libros();
 
@@ -211,12 +243,12 @@ public class MySQL {
                     nuevo.setDeposito_legal(rs.getString("deposito_legal"));
                     nuevo.setEstante(rs.getString("estante"));
 
-
-
+                    //Devuelve el array con todos los registros
                     listadobiblioteca.add(nuevo);
 
                 }
 
+                //Recoge las posibles excepciones que se pueden ocasionar
             } catch (ClassNotFoundException | SQLException e) {
 
                 System.out.println(e);
@@ -225,7 +257,7 @@ public class MySQL {
 
                 try {
 
-                    //Se cierran los recursos en åorden inverso a su creación
+                    //Se cierran los recursos en orden inverso a su creación
                     if (rs != null) {
                         rs.close();
                     }
@@ -236,10 +268,9 @@ public class MySQL {
                         conn.close();
                     }
 
-                    //devuelve el vector de aviones
-                    //new Datosalmacenados(listadobiblioteca);
+                    //Devuelve el array con todos los registros
                     return listadobiblioteca;
-
+                    //Recoge la posible excepción que pueda proporcionar la SQL 
                 } catch (SQLException e) {
                     System.out.println(e);
                 }
@@ -250,6 +281,12 @@ public class MySQL {
 
     }
 
+    /**
+     * Método que permitirá cambiar el dato proporcionado al registro de la base
+     * de datos
+     *
+     * @param libro un libro con los datos a modificar
+     */
     public void cambioDatos(Libros libro) {
 
         // Parametros
@@ -272,12 +309,16 @@ public class MySQL {
             //Se establece conexión con la base de datos
             conn = DriverManager.getConnection(url, usr, pwd);
 
+            //Se define la actualización
             String sql = "UPDATE libros SET titulo='" + libro.getTitulo() + "', autor='" + libro.getAutor() + "', revista='" + libro.getRevista() + "', editorial='" + libro.getEditorial() + "', categoria= '" + libro.getCategoria() + "" + "', nRevista='" + String.valueOf(libro.getNrevista()) + "', ano='" + String.valueOf(libro.getAño()) + "', ISBN='" + libro.getISBN() + "', deposito_legal='" + libro.getDeposito_legal() + "', estante='" + libro.getEstante() + "', ubicacion='" + libro.getUbicacion() + "', signatura='" + libro.getSignatura() + "' WHERE (idlibros= '" + libro.getIdlibros() + "');";
 
+            //Se prepara la actualización
             pstm = conn.prepareStatement(sql);
 
-            int rows = pstm.executeUpdate(sql);
+            //Se ejecuta la sentencia
+            pstm.executeUpdate(sql);
 
+            //Recoge la posible excepción que pueda proporcionar la SQL 
         } catch (ClassNotFoundException | SQLException e) {
 
             System.out.println(e);
@@ -286,7 +327,7 @@ public class MySQL {
 
             try {
 
-                //Se cierran los recursos en åorden inverso a su creación
+                //Se cierran los recursos en orden inverso a su creación
                 if (pstm != null) {
 
                     pstm.close();
@@ -294,7 +335,7 @@ public class MySQL {
                 if (conn != null) {
                     conn.close();
                 }
-
+                //Recoge la posible excepción que pueda proporcionar la SQL 
             } catch (SQLException e) {
                 System.out.println(e);
             }
@@ -303,6 +344,11 @@ public class MySQL {
 
     }
 
+    /**
+     * Método para añadir un nuevo registro a la base de datos
+     *
+     * @param libro Se pasa los valores del nuevo libros a registrar
+     */
     public void nuevoLibro(Libros libro) {
         // Parametros
         String driver = "com.mysql.cj.jdbc.Driver";
@@ -323,13 +369,15 @@ public class MySQL {
             //Se establece conexión con la base de datos
             conn = DriverManager.getConnection(url, usr, pwd);
 
-            String sql;
-            sql = "INSERT INTO libros (idlibros, titulo, autor, revista, editorial, categoria,nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura)"+ " VALUES ('"+ (valorprimario+1)+ "', '" + libro.getTitulo() + "', '" + libro.getAutor() +"', '"+libro.getRevista() +"', '" + libro.getEditorial() + "', '" + libro.getCategoria() + "', '"+ String.valueOf(libro.getNrevista()) +"', '" + String.valueOf(libro.getAño()) + "', '" + libro.getISBN() + "', '" + libro.getLugar() + "', '" + libro.getDeposito_legal() + "', '" + libro.getEstante() + "', '" + libro.getUbicacion() +"', '"+ libro.getSignatura() + "');";
-      
+            //Se define la sentencia
+            String sql = "INSERT INTO libros (idlibros, titulo, autor, revista, editorial, categoria,nRevista, ano, ISBN, lugar, deposito_legal, estante, ubicacion, signatura)" + " VALUES ('" + (ultimaID + 1) + "', '" + libro.getTitulo() + "', '" + libro.getAutor() + "', '" + libro.getRevista() + "', '" + libro.getEditorial() + "', '" + libro.getCategoria() + "', '" + String.valueOf(libro.getNrevista()) + "', '" + String.valueOf(libro.getAño()) + "', '" + libro.getISBN() + "', '" + libro.getLugar() + "', '" + libro.getDeposito_legal() + "', '" + libro.getEstante() + "', '" + libro.getUbicacion() + "', '" + libro.getSignatura() + "');";
+
+            //Se prepara la sentencia
             pstm = conn.prepareStatement(sql);
 
-            int rows = pstm.executeUpdate(sql);
-
+            //Se ejecuta la sentecia
+            pstm.executeUpdate(sql);
+            //Recoge la posible excepción que pueda proporcionar la SQL 
         } catch (ClassNotFoundException | SQLException e) {
 
             System.out.println(e);
@@ -346,7 +394,7 @@ public class MySQL {
                 if (conn != null) {
                     conn.close();
                 }
-
+                //Recoge la posible excepción que pueda proporcionar la SQL 
             } catch (SQLException e) {
                 System.out.println(e);
             }

@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SanBiblioteca.jar" size="60676" download="eager" />
+    <jar href="SanBiblioteca.jar" size="61719" download="eager" />
     <jar href="lib/AbsoluteLayout.jar" size="2903" download="eager" />
     <jar href="lib/byte-buddy-1.8.15.jar" size="2987269" download="eager" />
     <jar href="lib/client-combined-3.141.59-sources.jar" size="529743" download="eager" />
