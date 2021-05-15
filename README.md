@@ -34,7 +34,7 @@ _Que cosas necesitas para instalar el software y como instalarlas_
 
 ## Licencia 📄
 
-Este proyecto está bajo la Licencia  - mira el archivo [LICENSE.md](LICENSE.md) para detalles
+Este proyecto está bajo la Licencia  - mira el archivo [LICENSE](LICENSE) para detalles
 
 
 ---
